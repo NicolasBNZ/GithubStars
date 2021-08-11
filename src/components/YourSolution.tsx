@@ -1,8 +1,6 @@
 // Le but de l'exercice, c'est de faire apparaitre le nombre d'étoiles
 // (stargazer) d'un repo précis d'un utilisateur github.
 
-// Je commence par étudier le code. Et découvrir codesandbox, typescript et styles component
-
 // A faire:
 // - Créer en dur le compteur
 // - intégrer le hook d'état - dans App, les props envoient les états (facebook et React)
@@ -32,8 +30,8 @@ export const YourSolution = () => {
   const getRepositoryInformation = () => {
     axios
       .get(`https://api.github.com/repos/${name}/${repo}`)
-      .then((responses) => {
-        setGetLists(responses.data);
+      .then((response) => {
+        setGetLists(response.data);
       })
       .catch((error) => {
         console.log(error);

@@ -17,7 +17,7 @@ export default function App() {
     <Container>
       <Title />
       <GoalModel />
-      <YourSolution user="facebook" repository="react" />
+      <YourSolution />
     </Container>
   );
 }

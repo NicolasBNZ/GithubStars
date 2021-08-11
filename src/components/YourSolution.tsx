@@ -10,7 +10,9 @@
 // Je commence par étudier le code.
 
 // A faire:
-// - Créer en dur le compteur avec https://buttons.github.io/ (=une api fait quasiment tout le travail!)
+// - Créer en dur le compteur avec https://buttons.github.io/ (= api "officielle" fait quasiment tout le travail
+// mais il n'a pas la même forme que celui de l'exemple). Il y a celle ci, mais on ne peut pas écrire "react"
+// https://ghbtns.com/ mais elle pourrait disparaitre à la différence de "l'officielle"
 // - intégrer le hook d'état - dans App, les props envoient les états (facebook et React)
 // je n'arrive pas à les utiliser. Je les enlève et fais comme j'ai "l'habitude"
 // - intégrer l'appel à l'api et le hook d'effet
@@ -57,6 +59,7 @@ export const YourSolution = () => {
   return (
     <div>
       <GitHubButton
+        className="boutonOfficiel"
         href={`https://github.com/${name}/${repo}`}
         data-size="large"
         data-show-count="true"
@@ -64,10 +67,19 @@ export const YourSolution = () => {
       >
         React
       </GitHubButton>
-      <div className="deuxiemesolution">
+      <div className="solutionMain">
         <h1>{repo}</h1>
-        <div>{getLists.stargazers_count.toLocaleString("en")}</div>
+        <div>{getLists.stargazers_count}</div>
       </div>
+      <iframe
+        className="solutionTrois"
+        src={`https://ghbtns.com/github-btn.html?user=${name}&repo=${repo}&type=star&count=true&size=large`}
+        frameborder="0"
+        scrolling="0"
+        width="170"
+        height="30"
+        title="GitHub"
+      ></iframe>
     </div>
   );
 };

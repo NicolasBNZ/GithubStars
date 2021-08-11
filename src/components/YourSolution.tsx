@@ -11,7 +11,7 @@
 // A faire:
 // - Créer en dur le compteur avec https://buttons.github.io/ (+une dépendance)
 // intégrer le hook d'état - dans App, les props envoient les états (facebook et React)
-// je vais essayer sans hook d'état
+// je vais essayer sans hook d'état!!!
 // intégrer l'appel à l'api et le hook d'effet import React from "react";
 
 import GitHubButton from "react-github-btn";

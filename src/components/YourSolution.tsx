@@ -10,7 +10,7 @@
 // Je commence par étudier le code.
 
 // A faire:
-// - Créer en dur le compteur avec https://buttons.github.io/ (+une dépendance)
+// - Créer en dur le compteur avec https://buttons.github.io/ (=une api fait quasiment tout le travail!)
 // - intégrer le hook d'état - dans App, les props envoient les états (facebook et React)
 // je n'arrive pas à les utiliser. Je les enlève et fais comme j'ai "l'habitude"
 // - intégrer l'appel à l'api et le hook d'effet
@@ -66,7 +66,7 @@ export const YourSolution = () => {
       </GitHubButton>
       <div className="deuxiemesolution">
         <h1>{repo}</h1>
-        <div>{getLists.stargazers_count}</div>
+        <div>{getLists.stargazers_count.toLocaleString("en")}</div>
       </div>
     </div>
   );

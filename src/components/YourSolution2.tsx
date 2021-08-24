@@ -1,3 +1,6 @@
+// ANCIEN CODE - NON UTILISE
+// ARCHIVE POUR TRAVAILLER STYLED COMPONENTS
+
 // Le but de l'exercice, c'est de faire apparaitre le nombre d'étoiles
 // (stargazer) d'un repo précis d'un utilisateur github.
 
@@ -10,28 +13,11 @@
 
 import React, { useState, useEffect } from "react";
 
+// Import bibliothèque pour créer le bouton compteur "officiel"
+import GitHubButton from "react-github-btn";
+
 // Import axios, methode ajax pour l'appel à l'api de github
 import axios from "axios";
-
-// Import de styled components
-import styled from "styled-components";
-
-//  Création du style à partir d'ici
-// une fonction pour les déclations CSS en commun aux deux parties
-// du compteur
-
-const commonStyle = `
-  background-color: red;
-    border-radius: 4px
-    `;
-
-export const LogoName = styled.div`
-  ${commonStyle};
-`;
-
-export const Counter = styled.div`
-  ${commonStyle};
-`;
 
 export const YourSolution = () => {
   // State pour le nom du compte github
@@ -62,10 +48,34 @@ export const YourSolution = () => {
 
   return (
     <div>
+      {/* Solution avec https://buttons.github.io/ = api "officielle" fait quasiment tout le travail 
+    mais le bouton n'a pas la même forme que celui de l'exemple. */}
+      <GitHubButton
+        className="boutonOfficiel"
+        href={`https://github.com/${name}/${repo}`}
+        data-size="large"
+        data-show-count="true"
+        aria-label="Star on GitHub"
+      >
+        React
+      </GitHubButton>
+      {/* Solution 'à la main" avec l'appel à l'api. Pas du tout mis en page. Je ne suis pas encore à l'aise avec 
+    styled-components*/}
       <div className="solutionMain">
-        <LogoName>{repo}</LogoName>
-        <Counter>{getLists.stargazers_count}</Counter>
+        <h2>{repo}</h2>
+        <div>{getLists.stargazers_count}</div>
       </div>
+      {/* Troisième possibilité, mais on ne peut pas écrire "react", il faut laisser "star"
+    https://ghbtns.com/ mais elle pourrait disparaitre à la différence de "l'officielle"  */}
+      <iframe
+        className="solutionTrois"
+        src={`https://ghbtns.com/github-btn.html?user=${name}&repo=${repo}&type=star&count=true&size=large`}
+        frameBorder="0"
+        scrolling="0"
+        width="170"
+        height="30"
+        title="GitHub"
+      ></iframe>
     </div>
   );
 };

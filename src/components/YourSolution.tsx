@@ -17,20 +17,68 @@ import axios from "axios";
 import styled from "styled-components";
 
 //  Création du style à partir d'ici
-// une fonction pour les déclations CSS en commun aux deux parties
-// du compteur
 
-const commonStyle = `
-  background-color: red;
-    border-radius: 4px
-    `;
+// Import du logo - je ne l'utilise pas, voir plus bas
+// import { IconGithub } from "./index";
 
-export const LogoName = styled.div`
-  ${commonStyle};
+// Le fond rouge, c'est pour voir la petite flèche entre les deux cadres. :)
+export const Disposition = styled.div`
+  display: flex;
+  /* background-color: red; */
 `;
 
-export const Counter = styled.div`
+// une fonction pour les déclations CSS en commun aux deux parties
+// du compteur
+const commonStyle = `
+    font-weight: bolder;
+    border: 1px solid #D5D5D5;
+    border-radius: 4px;
+    padding: 4px 8px;
+    `;
+
+const LogoGithub = styled.span`
+  margin: 0px 4px 0px 1px;
+  padding: 0px 0px 2px 0px;
+  width: 20px;
+  height: 20px;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='12 12 40 40'%3e%3cpath fill='%23333' d='M32 13.4c-10.5 0-19 8.5-19 19 0 8.4 5.5 15.5 13 18 1 .2 1.3-.4 1.3-.9v-3.2c-5.3 1.1-6.4-2.6-6.4-2.6-.9-2.1-2.1-2.7-2.1-2.7-1.7-1.2.1-1.1.1-1.1 1.9.1 2.9 2 2.9 2 1.7 2.9 4.5 2.1 5.5 1.6.2-1.2.7-2.1 1.2-2.6-4.2-.5-8.7-2.1-8.7-9.4 0-2.1.7-3.7 2-5.1-.2-.5-.8-2.4.2-5 0 0 1.6-.5 5.2 2 1.5-.4 3.1-.7 4.8-.7 1.6 0 3.3.2 4.7.7 3.6-2.4 5.2-2 5.2-2 1 2.6.4 4.6.2 5 1.2 1.3 2 3 2 5.1 0 7.3-4.5 8.9-8.7 9.4.7.6 1.3 1.7 1.3 3.5v5.2c0 .5.4 1.1 1.3.9 7.5-2.6 13-9.7 13-18.1 0-10.5-8.5-19-19-19z'/%3e%3c/svg%3e")
+    0 0/100% 100% no-repeat;
+`;
+
+// Changer le padding du logo importé - je ne comprends pas pourquoi je ne peux
+// pas écraser le style antérieur.  J'aurais préféré cette solution
+// const LogoSeul = styled(IconGithub)`
+//   width: 400px;
+// `;
+
+const LogoName = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
   ${commonStyle};
+  font-size: 15px;
+  background: linear-gradient(#fafafa, #efefef);
+  text-transform: capitalize;
+`;
+
+const Fleche = styled.div`
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #fafafa;
+  position: absolute;
+  top: 212px;
+  left: 288px;
+`;
+
+const Counter = styled.div`
+  display: flex;
+  align-items: center;
+  ${commonStyle};
+  font-size: 16px;
+  background-color: #fafafa;
+  margin-left: 5px;
 `;
 
 export const YourSolution = () => {
@@ -62,10 +110,14 @@ export const YourSolution = () => {
 
   return (
     <div>
-      <div className="solutionMain">
-        <LogoName>{repo}</LogoName>
-        <Counter>{getLists.stargazers_count}</Counter>
-      </div>
+      <Disposition>
+        <LogoName>
+          <LogoGithub />
+          {repo}
+        </LogoName>
+        <Fleche />
+        <Counter>{getLists.stargazers_count.toLocaleString("en-US")}</Counter>
+      </Disposition>
     </div>
   );
 };

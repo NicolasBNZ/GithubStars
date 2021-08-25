@@ -45,10 +45,10 @@ const LogoGithub = styled.span`
     0 0/100% 100% no-repeat;
 `;
 
-// Changer le padding du logo importé - je ne comprends pas pourquoi je ne peux
+// Ajuster le logo importé - je ne comprends pas pourquoi je ne peux
 // pas écraser le style antérieur.  J'aurais préféré cette solution
 // const LogoSeul = styled(IconGithub)`
-//   width: 400px;
+//   width: 50px;
 // `;
 
 const LogoName = styled.div`
@@ -67,9 +67,9 @@ const Fleche = styled.div`
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   border-right: 8px solid #fafafa;
-  position: absolute;
-  top: 212px;
-  left: 288px;
+  position: relative;
+  top: 9px;
+  right: -2px;
 `;
 
 const Counter = styled.div`
@@ -78,7 +78,7 @@ const Counter = styled.div`
   ${commonStyle};
   font-size: 16px;
   background-color: #fafafa;
-  margin-left: 5px;
+  margin-left: px;
 `;
 
 export const YourSolution = () => {
@@ -116,8 +116,14 @@ export const YourSolution = () => {
           {repo}
         </LogoName>
         <Fleche />
-        <Counter>{getLists.stargazers_count.toLocaleString("en-US")}</Counter>
+        <Counter>{getLists.stargazers_count}</Counter>
       </Disposition>
     </div>
   );
 };
+
+// La commande suivante fait planter de temps en temps.
+//<Counter>{getLists.stargazers_count.toLocaleString("en-US")}</Counter>
+// TypeError: Cannot read property 'toLocaleString' of undefined
+// il semble y avoir un problème de mise à jour avec la base de données.
+// Peut être ma connexion ou codesandbox
